@@ -1,18 +1,16 @@
 package com.example.tickspot;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 
-public class TickSpotActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
+public class TickSpotActivity extends SherlockFragmentActivity implements ActionBar.OnNavigationListener {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -26,7 +24,7 @@ public class TickSpotActivity extends FragmentActivity implements ActionBar.OnNa
         setContentView(R.layout.activity_tick_spot);
 
         // Set up the action bar to show a dropdown list.
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
@@ -45,12 +43,11 @@ public class TickSpotActivity extends FragmentActivity implements ActionBar.OnNa
                 this);
     }
 
-
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         // Restore the previously serialized current dropdown position.
         if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
-            getActionBar().setSelectedNavigationItem(
+            getSupportActionBar().setSelectedNavigationItem(
                     savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
         }
     }
@@ -59,16 +56,9 @@ public class TickSpotActivity extends FragmentActivity implements ActionBar.OnNa
     public void onSaveInstanceState(Bundle outState) {
         // Serialize the current dropdown position.
         outState.putInt(STATE_SELECTED_NAVIGATION_ITEM,
-                getActionBar().getSelectedNavigationIndex());
+                getSupportActionBar().getSelectedNavigationIndex());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.tick_spot, menu);
-        return true;
-    }
-    
     @Override
     public boolean onNavigationItemSelected(int position, long id) {
         // When the given dropdown item is selected, show its contents in the
