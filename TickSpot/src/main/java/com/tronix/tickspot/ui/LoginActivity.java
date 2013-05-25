@@ -1,4 +1,4 @@
-package com.tronix.tickspot;
+package com.tronix.tickspot.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.tronix.tickspot.R;
 
 /**
  * Activity which displays a login screen to the user, offering registration as

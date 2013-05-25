@@ -1,4 +1,4 @@
-package com.tronix.tickspot;
+package com.tronix.tickspot.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.tronix.tickspot.R;
 
 public class TickSpotActivity extends SherlockFragmentActivity implements ActionBar.OnNavigationListener {
 
