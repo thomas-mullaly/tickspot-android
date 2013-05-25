@@ -1,4 +1,4 @@
-package com.example.tickspot;
+package com.tronix.tickspot;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
