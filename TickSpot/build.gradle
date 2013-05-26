@@ -10,6 +10,7 @@ apply plugin: 'android'
 
 dependencies {
     compile project(":libs:actionbarsherlock")
+    compile files('libs/android-async-http-1.4.3.jar')
 }
 
 android {

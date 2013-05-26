@@ -1,5 +1,6 @@
 package com.tronix.tickspot.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -42,6 +43,9 @@ public class TickSpotActivity extends SherlockFragmentActivity implements Action
                         getString(R.string.title_section3),
                 }),
             this);
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
