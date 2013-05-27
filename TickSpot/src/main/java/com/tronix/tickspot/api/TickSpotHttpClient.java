@@ -2,10 +2,7 @@ package com.tronix.tickspot.api;
 
 import com.loopj.android.http.*;
 
-public class TickSpotHttpClient {
-    private AsyncHttpClient mAsyncHttpClient;
-
-    public TickSpotHttpClient() {
-        mAsyncHttpClient = new AsyncHttpClient();
-    }
+public interface TickSpotHttpClient {
+    public boolean areValidCredentials(TickSpotCredentials tickSpotCredentials);
 }
+

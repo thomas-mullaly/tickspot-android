@@ -34,7 +34,14 @@
                       android:orientation="vertical">
 
             <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/login_domain"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_domain" />
+            <EditText
+                    android:id="@+id/login_email"
                     android:singleLine="true"
                     android:maxLines="1"
                     android:layout_width="match_parent"
@@ -43,7 +50,7 @@
                     android:hint="@string/prompt_email" />
 
             <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/login_password"
                     android:singleLine="true"
                     android:maxLines="1"
                     android:layout_width="match_parent"
@@ -54,7 +61,7 @@
                     android:imeActionId="@+id/login"
                     android:imeOptions="actionUnspecified" />
 
-            <Button android:id="@+id/sign_in_button"
+            <Button android:id="@+id/login_sign_in_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
