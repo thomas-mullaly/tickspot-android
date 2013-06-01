@@ -1,7 +1,8 @@
-package com.tronix.tickspot;
+package com.tronix.tickspot.ui;
 
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.tronix.tickspot.R;
 
 public class TickSpotActivity extends SherlockFragmentActivity {
     /**
