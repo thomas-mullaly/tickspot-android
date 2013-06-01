@@ -1,9 +1,9 @@
 package com.tronix.tickspot;
 
-import android.app.Activity;
 import android.os.Bundle;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 
-public class TickSpotActivity extends Activity {
+public class TickSpotActivity extends SherlockFragmentActivity {
     /**
      * Called when the activity is first created.
      */
