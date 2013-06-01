@@ -13,18 +13,31 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import com.tronix.tickspot.R;
 import com.tronix.tickspot.api.TickSpotHttpClient;
-import roboguice.RoboGuice;
 import roboguice.activity.RoboActivity;
+import roboguice.inject.InjectView;
 
 public class LoginActivity extends  RoboActivity {
     public static final String EXTRA_EMAIL = "com.tronix.tickspot.LoginActivity.extra.EMAIL";
 
+    @InjectView(R.id.login_email)
     private EditText mEmailEditText;
+
+    @InjectView(R.id.login_password)
     private EditText mPasswordEditText;
+
+    @InjectView(R.id.login_domain)
     private EditText mDomainEditText;
+
+    @InjectView(R.id.login_sign_in_button)
     private Button mSignInButton;
+
+    @InjectView(R.id.login_form)
     private View mLoginFormView;
+
+    @InjectView(R.id.login_status)
     private View mLoginStatusView;
+
+    @InjectView(R.id.login_status_message)
     private TextView mLoginStatusMessageView;
 
     @Inject
@@ -35,13 +48,6 @@ public class LoginActivity extends  RoboActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-
-        mEmailEditText = (EditText) findViewById(R.id.login_email);
-        mPasswordEditText = (EditText) findViewById(R.id.login_password);
-        mDomainEditText = (EditText) findViewById(R.id.login_domain);
-        mSignInButton = (Button) findViewById(R.id.login_sign_in_button);
-        mLoginStatusView = findViewById(R.id.login_status);
-        mLoginFormView = findViewById(R.id.login_form);
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
