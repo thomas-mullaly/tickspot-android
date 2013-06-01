@@ -10,4 +10,16 @@ public class TickSpotCredentials {
         mEmail = email;
         mPassword = password;
     }
+
+    public String getDomain() {
+        return mDomain;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public String getPassword() {
+        return mPassword;
+    }
 }

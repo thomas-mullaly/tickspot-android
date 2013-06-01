@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.google.inject.Inject;
 import com.tronix.tickspot.R;
+import com.tronix.tickspot.api.TickSpotCredentials;
 import com.tronix.tickspot.api.TickSpotHttpClient;
+import com.tronix.tickspot.core.Action;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
@@ -101,9 +103,18 @@ public class LoginActivity extends  RoboActivity {
             String email = mEmailEditText.getText().toString();
             String password = mPasswordEditText.getText().toString();
 
+            TickSpotCredentials credentials = new TickSpotCredentials(domain, email, password);
+
             showProgress(true);
 
-            mTickSpotClient.areValidCredentials(null);
+            mTickSpotClient.areValidCredentials(credentials, new Action<Boolean>() {
+                @Override
+                public void Invoke(Boolean param) {
+                    showProgress(false);
+
+                    mEmailEditText.setText(param.toString());
+                }
+            });
         }
     }
 

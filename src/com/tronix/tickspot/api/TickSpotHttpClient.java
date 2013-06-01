@@ -1,6 +1,8 @@
 package com.tronix.tickspot.api;
 
+import com.tronix.tickspot.core.Action;
+
 public interface TickSpotHttpClient {
-    public boolean areValidCredentials(TickSpotCredentials tickSpotCredentials);
+    void areValidCredentials(TickSpotCredentials tickSpotCredentials, final Action<Boolean> callback);
 }
 
