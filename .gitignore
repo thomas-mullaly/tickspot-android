@@ -23,7 +23,6 @@ local.properties
 
 # Intellij
 .idea/workspace.xml
-*.iml
 *.iws
 
 # Mac
