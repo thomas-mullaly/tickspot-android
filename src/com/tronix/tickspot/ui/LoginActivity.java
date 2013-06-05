@@ -3,6 +3,7 @@ package com.tronix.tickspot.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ import roboguice.inject.InjectView;
 
 public class LoginActivity extends  RoboActivity {
     public static final String EXTRA_EMAIL = "com.tronix.tickspot.LoginActivity.extra.EMAIL";
+    public static final String TICKSPOT_LOGIN_CREDENTIALS_EXTRA = "LoginCredentials";
 
     @InjectView(R.id.login_email)
     private EditText mEmailEditText;
@@ -103,7 +105,7 @@ public class LoginActivity extends  RoboActivity {
             String email = mEmailEditText.getText().toString();
             String password = mPasswordEditText.getText().toString();
 
-            TickSpotCredentials credentials = new TickSpotCredentials(domain, email, password);
+            final TickSpotCredentials credentials = new TickSpotCredentials(domain, email, password);
 
             showProgress(true);
 
@@ -112,7 +114,14 @@ public class LoginActivity extends  RoboActivity {
                 public void Invoke(Boolean param) {
                     showProgress(false);
 
-                    mEmailEditText.setText(param.toString());
+                    if (param) {
+                        Intent resultIntent = new Intent();
+                        resultIntent.putExtra(TICKSPOT_LOGIN_CREDENTIALS_EXTRA, credentials);
+                        setResult(RESULT_OK, resultIntent);
+                        finish();
+                    } else {
+                        // Do something useful.
+                    }
                 }
             });
         }
