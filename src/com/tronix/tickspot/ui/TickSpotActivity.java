@@ -16,7 +16,7 @@ public class TickSpotActivity extends SherlockFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_tickspot);
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivityForResult(intent, TICKSPOT_LOGIN_REQUEST);
