@@ -2,6 +2,8 @@ package com.tronix.tickspot.ioc;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
+import com.tronix.tickspot.account.AccountManager;
+import com.tronix.tickspot.account.impl.AccountManagerImpl;
 import com.tronix.tickspot.api.TickSpotHttpClient;
 import com.tronix.tickspot.api.TickSpotHttpClientImpl;
 import com.tronix.tickspot.settings.CredentialsStore;
@@ -15,5 +17,6 @@ public class TickSpotModule implements Module {
         binder.bind(SettingsProvider.class).to(SettingsProviderImpl.class);
         binder.bind(CredentialsStore.class).to(CredentialsStoreImpl.class);
         binder.bind(TickSpotHttpClient.class).to(TickSpotHttpClientImpl.class);
+        binder.bind(AccountManager.class).to(AccountManagerImpl.class);
     }
 }

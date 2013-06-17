@@ -13,15 +13,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.google.inject.Inject;
 import com.tronix.tickspot.R;
+import com.tronix.tickspot.account.AccountManager;
 import com.tronix.tickspot.api.TickSpotCredentials;
 import com.tronix.tickspot.api.TickSpotHttpClient;
 import com.tronix.tickspot.core.Action;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
+import java.net.Inet4Address;
+
 public class LoginActivity extends  RoboActivity {
-    public static final String EXTRA_EMAIL = "com.tronix.tickspot.LoginActivity.extra.EMAIL";
-    public static final String TICKSPOT_LOGIN_CREDENTIALS_EXTRA = "LoginCredentials";
+    private static final String EXTRA_PREFIX = "com.tronix.tickspot.extra.";
+
+    public static final String EXTRA_FINISH_INTENT = EXTRA_PREFIX + "FinishIntent";
 
     @InjectView(R.id.login_email)
     private EditText mEmailEditText;
@@ -47,11 +51,21 @@ public class LoginActivity extends  RoboActivity {
     @Inject
     private TickSpotHttpClient mTickSpotClient;
 
+    @Inject
+    private AccountManager mAccountManager;
+
+    private Intent mFinishIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+
+        final Intent intent = getIntent();
+        if (intent.hasExtra(EXTRA_FINISH_INTENT)) {
+            mFinishIntent = intent.getParcelableExtra(EXTRA_FINISH_INTENT);
+        }
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,9 +129,11 @@ public class LoginActivity extends  RoboActivity {
                     showProgress(false);
 
                     if (param) {
-                        Intent resultIntent = new Intent();
-                        resultIntent.putExtra(TICKSPOT_LOGIN_CREDENTIALS_EXTRA, credentials);
-                        setResult(RESULT_OK, resultIntent);
+                        mAccountManager.putAccount(credentials);
+                        mFinishIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                        mFinishIntent.setAction(Intent.ACTION_MAIN);
+                        mFinishIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(mFinishIntent);
                         finish();
                     } else {
                         // Do something useful.
