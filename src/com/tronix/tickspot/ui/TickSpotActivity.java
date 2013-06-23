@@ -3,10 +3,14 @@ package com.tronix.tickspot.ui;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.tronix.tickspot.R;
@@ -16,16 +20,21 @@ import com.tronix.tickspot.utils.AccountUtils;
 import roboguice.RoboGuice;
 import roboguice.inject.RoboInjector;
 
+import java.util.ArrayList;
+
 public class TickSpotActivity extends SherlockFragmentActivity {
+    private static final String SAVED_SELECTED_DRAWER_INDEX = "SelectedDrawerIndex";
+
     private TickSpotCredentials mCredentials;
     private RoboInjector mRoboInjector;
     private AccountManager mAccountManager;
 
     private ListView mDrawerList;
-    private FrameLayout mTickSpotContentFrame;
     private DrawerLayout mDrawerLayout;
 
     private ActionBarDrawerToggle mDrawerToggle;
+
+    private ArrayList<Fragment> mDrawerFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,31 +52,15 @@ public class TickSpotActivity extends SherlockFragmentActivity {
 
         setContentView(R.layout.activity_tickspot);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.tick_spot_drawer_layout);
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        setUpNavigationDrawer();
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDrawerList = (ListView) findViewById(R.id.tick_spot_drawer_list);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, new String[] { "Test" }));
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer,
-                R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View view) {
-                super.onDrawerOpened(view);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(SAVED_SELECTED_DRAWER_INDEX)) {
+                setSelectedDrawerIndex(savedInstanceState.getInt(SAVED_SELECTED_DRAWER_INDEX));
             }
-
-            @Override
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-            }
-        };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        mTickSpotContentFrame = (FrameLayout) findViewById(R.id.tick_spot_content_frame);
+        } else {
+            setSelectedDrawerIndex(0);
+        }
     }
 
     @Override
@@ -95,11 +88,47 @@ public class TickSpotActivity extends SherlockFragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    private void setSelectedDrawerIndex(int index) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.tick_spot_content_frame, mDrawerFragments.get(index)).commit();
+    }
+
+    private void setUpNavigationDrawer() {
+        mDrawerFragments = new ArrayList<Fragment>();
+        mDrawerFragments.add(new TimersFragment());
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.tick_spot_drawer_layout);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mDrawerList = (ListView) findViewById(R.id.tick_spot_drawer_list);
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, new String[] { "Test" }));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer,
+                R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View view) {
+                super.onDrawerOpened(view);
+            }
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             mDrawerList.setItemChecked(i, true);
             mDrawerLayout.closeDrawer(mDrawerList);
+
+            setSelectedDrawerIndex(i);
         }
     }
 }
