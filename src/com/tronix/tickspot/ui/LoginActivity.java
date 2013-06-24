@@ -20,8 +20,6 @@ import com.tronix.tickspot.core.Action;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
-import java.net.Inet4Address;
-
 public class LoginActivity extends  RoboActivity {
     private static final String EXTRA_PREFIX = "com.tronix.tickspot.extra.";
 
