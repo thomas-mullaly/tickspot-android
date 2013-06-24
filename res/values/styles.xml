@@ -28,4 +28,28 @@
             16dp
         </item>
     </style>
+
+    <style name="DrawerListItemBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="DrawerListItem" parent="DrawerListItemBase">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="DrawerList">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:background">@drawable/abs__ab_solid_dark_holo</item>
+        <item name="android:choiceMode">singleChoice</item>
+        <item name="android:divider">@android:color/darker_gray</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:layout_width">@dimen/drawer_list_layout_width</item>
+    </style>
 </resources>
