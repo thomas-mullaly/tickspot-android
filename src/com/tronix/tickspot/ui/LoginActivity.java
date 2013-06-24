@@ -11,47 +11,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.google.inject.Inject;
 import com.tronix.tickspot.R;
 import com.tronix.tickspot.account.AccountManager;
 import com.tronix.tickspot.api.TickSpotCredentials;
 import com.tronix.tickspot.api.TickSpotHttpClient;
 import com.tronix.tickspot.core.Action;
-import roboguice.activity.RoboActivity;
+import roboguice.RoboGuice;
 import roboguice.inject.InjectView;
+import roboguice.inject.RoboInjector;
 
-public class LoginActivity extends  RoboActivity {
+public class LoginActivity extends SherlockActivity {
     private static final String EXTRA_PREFIX = "com.tronix.tickspot.extra.";
 
     public static final String EXTRA_FINISH_INTENT = EXTRA_PREFIX + "FinishIntent";
 
-    @InjectView(R.id.login_email)
     private EditText mEmailEditText;
-
-    @InjectView(R.id.login_password)
     private EditText mPasswordEditText;
-
-    @InjectView(R.id.login_domain)
     private EditText mDomainEditText;
-
-    @InjectView(R.id.login_sign_in_button)
     private Button mSignInButton;
-
-    @InjectView(R.id.login_form)
     private View mLoginFormView;
-
-    @InjectView(R.id.login_status)
     private View mLoginStatusView;
-
-    @InjectView(R.id.login_status_message)
     private TextView mLoginStatusMessageView;
 
-    @Inject
+    private RoboInjector mRoboInjector;
     private TickSpotHttpClient mTickSpotClient;
-
-    @Inject
     private AccountManager mAccountManager;
-
     private Intent mFinishIntent;
 
     @Override
@@ -59,6 +45,18 @@ public class LoginActivity extends  RoboActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+
+        mRoboInjector = RoboGuice.getInjector(getApplication());
+        mTickSpotClient = mRoboInjector.getInstance(TickSpotHttpClient.class);
+        mAccountManager = mRoboInjector.getInstance(AccountManager.class);
+
+        mEmailEditText = (EditText) findViewById(R.id.login_email);
+        mPasswordEditText = (EditText) findViewById(R.id.login_password);
+        mDomainEditText = (EditText) findViewById(R.id.login_domain);
+        mSignInButton = (Button) findViewById(R.id.login_sign_in_button);
+        mLoginFormView = findViewById(R.id.login_form);
+        mLoginStatusView = findViewById(R.id.login_status);
+        mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
 
         final Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_FINISH_INTENT)) {
