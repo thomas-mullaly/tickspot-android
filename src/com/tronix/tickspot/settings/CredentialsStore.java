@@ -6,4 +6,6 @@ public interface CredentialsStore {
     boolean hasSavedCredentials();
     void putCredentials(TickSpotCredentials credentials);
     TickSpotCredentials getCredentials();
+
+    void removeCredentials();
 }

@@ -3,4 +3,6 @@
     <string name="app_name">TickSpot for Android</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="login_headline">TickSpot Account</string>
+    <string name="menu_sign_out_text">Sign out</string>
 </resources>

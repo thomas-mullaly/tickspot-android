@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.tronix.tickspot.R;
 import com.tronix.tickspot.account.AccountManager;
@@ -71,9 +73,20 @@ public class TickSpotActivity extends SherlockFragmentActivity {
             } else {
                 mDrawerLayout.closeDrawer(mDrawerList);
             }
+        } else if (item.getItemId() == R.id.menu_sign_out) {
+            mAccountManager.signOut();
+            AccountUtils.startLoginFlow(this, getIntent());
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.tickspot_actionbar_menu, menu);
+        return true;
     }
 
     @Override

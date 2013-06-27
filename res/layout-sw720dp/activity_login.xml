@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingRight="@dimen/login_layout_padding_left"
+              android:paddingTop="@dimen/login_layout_padding_top">
+    <TextView android:id="@+id/login_headline"
+              android:text="@string/login_headline"
+              android:layout_alignParentTop="true"
+              android:layout_alignParentLeft="true"
+              android:layout_marginLeft="16dip"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+
+    <Button android:id="@+id/login_sign_in_button"
+            android:layout_below="@id/login_headline"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/action_sign_in_register" />
+
+    <FrameLayout android:layout_below="@id/login_headline"
+                 android:layout_alignParentLeft="true"
+                 android:layout_toLeftOf="@id/login_sign_in_button"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+        <EditText
+                android:id="@+id/login_domain"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_domain" />
+        <EditText
+                android:id="@+id/login_email"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/prompt_email" />
+
+        <EditText
+                android:id="@+id/login_password"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeActionId="@+id/login"
+                android:imeOptions="actionUnspecified" />
+    </FrameLayout>
+</RelativeLayout>

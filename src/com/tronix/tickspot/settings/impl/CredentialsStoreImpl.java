@@ -47,4 +47,15 @@ public class CredentialsStoreImpl implements CredentialsStore {
                 mSharedPreferences.getString(CREDENTIALS_PASSWORD, "")
         );
     }
+
+    @Override
+    public void removeCredentials() {
+        if (hasSavedCredentials()) {
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.remove(CREDENTIALS_DOMAIN);
+            editor.remove(CREDENTIALS_EMAIL);
+            editor.remove(CREDENTIALS_PASSWORD);
+            editor.commit();
+        }
+    }
 }

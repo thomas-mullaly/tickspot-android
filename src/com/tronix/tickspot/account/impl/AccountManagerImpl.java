@@ -27,4 +27,9 @@ public class AccountManagerImpl implements AccountManager {
     public void putAccount(TickSpotCredentials credentials) {
         mCredentialsStore.putCredentials(credentials);
     }
+
+    @Override
+    public void signOut() {
+        mCredentialsStore.removeCredentials();
+    }
 }

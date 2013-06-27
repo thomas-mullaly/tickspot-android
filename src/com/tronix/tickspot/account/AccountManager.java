@@ -7,5 +7,6 @@ public interface AccountManager {
 
     TickSpotCredentials getAccount();
     void putAccount(TickSpotCredentials credentials);
+    void signOut();
 }
 

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="drawer_list_layout_width">320dp</dimen>
+    <dimen name="login_layout_padding_left">30dip</dimen>
+    <dimen name="login_layout_padding_top">16dip</dimen>
 </resources>
