@@ -12,14 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.google.inject.Inject;
 import com.tronix.tickspot.R;
 import com.tronix.tickspot.account.AccountManager;
 import com.tronix.tickspot.api.TickSpotCredentials;
 import com.tronix.tickspot.api.TickSpotHttpClient;
 import com.tronix.tickspot.core.Action;
 import roboguice.RoboGuice;
-import roboguice.inject.InjectView;
 import roboguice.inject.RoboInjector;
 
 public class LoginActivity extends SherlockActivity {

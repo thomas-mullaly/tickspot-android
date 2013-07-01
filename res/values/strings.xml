@@ -3,6 +3,12 @@
     <string name="app_name">TickSpot for Android</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="login_headline">TickSpot Account</string>
+    <string name="login_headline">TickSpot Login</string>
     <string name="menu_sign_out_text">Sign out</string>
+    <string name="domain_name_help">Enter the URL you use to log into TickSpot</string>
+    <string name="login_domain_https">https://</string>
+    <string name="login_domain_tickspot_dot_com">.tickspot.com</string>
+    <string name="login_credentials_help_text">Enter the credentials to your TickSpot account</string>
+    <string name="login_credentials_email_address">Email Address</string>
+    <string name="login_credentials_password">Password</string>
 </resources>

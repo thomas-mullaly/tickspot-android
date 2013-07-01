@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="20dip">
+    <TableLayout android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+        <TextView android:text="@string/domain_name_help"
+                  style="@style/Login_InformationHeader"/>
+        <TableRow>
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:text="@string/login_domain_https" />
+
+            <EditText android:id="@+id/login_domain"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:layout_width="@dimen/login_domain_edit_text_width"
+                    android:layout_height="wrap_content" />
+
+            <TextView android:layout_height="wrap_content"
+                      android:layout_width="wrap_content"
+                      android:text="@string/login_domain_tickspot_dot_com" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:paddingTop="30dip">
+        <TextView style="@style/Login_InformationHeader"
+                  android:text="@string/login_credentials_help_text"/>
+        <TableRow>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginRight="@dimen/login_credentials_text_view_margin"
+                      android:text="@string/login_credentials_email_address"/>
+            <EditText android:id="@+id/login_email"
+                      android:singleLine="true"
+                      android:maxLines="1"
+                      android:layout_width="@dimen/login_credentials_edit_text_width"
+                      android:layout_height="wrap_content"
+                      android:inputType="textEmailAddress" />
+        </TableRow>
+        <TableRow>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginRight="@dimen/login_credentials_text_view_margin"
+                      android:text="@string/login_credentials_password"/>
+            <EditText android:id="@+id/login_password"
+                      android:singleLine="true"
+                      android:maxLines="1"
+                      android:layout_width="@dimen/login_credentials_edit_text_width"
+                      android:layout_height="wrap_content"
+                      android:inputType="textPassword"
+                      android:imeActionLabel="@string/action_sign_in_short"
+                      android:imeActionId="@+id/login"
+                      android:imeOptions="actionUnspecified" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

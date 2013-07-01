@@ -52,4 +52,9 @@
         <item name="android:dividerHeight">1dp</item>
         <item name="android:layout_width">@dimen/drawer_list_layout_width</item>
     </style>
+
+    <style name="Login_InformationHeader">
+        <item name="android:paddingBottom">16dip</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

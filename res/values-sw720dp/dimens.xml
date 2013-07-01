@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="drawer_list_layout_width">320dp</dimen>
-    <dimen name="login_layout_padding_left">30dip</dimen>
+    <dimen name="login_layout_padding_left_right">100dip</dimen>
     <dimen name="login_layout_padding_top">16dip</dimen>
+    <dimen name="login_headline_text_size">20sp</dimen>
+    <dimen name="login_domain_edit_text_width">200dip</dimen>
+    <dimen name="login_credentials_edit_text_width">300dip</dimen>
+    <dimen name="login_credentials_text_view_margin">60dip</dimen>
 </resources>
