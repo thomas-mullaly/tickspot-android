@@ -124,8 +124,6 @@ public class LoginActivity extends SherlockActivity {
 
                     if (param) {
                         mAccountManager.putAccount(credentials);
-                        mFinishIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                        mFinishIntent.setAction(Intent.ACTION_MAIN);
                         mFinishIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(mFinishIntent);
                         finish();

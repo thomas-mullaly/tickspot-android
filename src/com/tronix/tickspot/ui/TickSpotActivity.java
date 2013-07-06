@@ -1,5 +1,6 @@
 package com.tronix.tickspot.ui;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -45,8 +46,9 @@ public class TickSpotActivity extends SherlockFragmentActivity {
         mAccountManager = mRoboInjector.getInstance(AccountManager.class);
 
         if (!mAccountManager.isLoggedIn()) {
-            AccountUtils.startLoginFlow(this, getIntent());
+            AccountUtils.startLoginFlow(this, new Intent(this, TickSpotActivity.class));
             finish();
+            return;
         }
 
         mCredentials = mAccountManager.getAccount();
@@ -74,8 +76,9 @@ public class TickSpotActivity extends SherlockFragmentActivity {
             }
         } else if (item.getItemId() == R.id.menu_sign_out) {
             mAccountManager.signOut();
-            AccountUtils.startLoginFlow(this, getIntent());
+            AccountUtils.startLoginFlow(this, new Intent(this, TickSpotActivity.class));
             finish();
+
         }
 
         return super.onOptionsItemSelected(item);
