@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.tronix.tickspot.R;
@@ -15,6 +16,10 @@ public class TimersFragment extends SherlockFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         setHasOptionsMenu(true);
+
+        if (activity instanceof SherlockFragmentActivity) {
+            ((SherlockFragmentActivity)activity).getSupportActionBar().setTitle("Timers");
+        }
     }
 
     @Override
