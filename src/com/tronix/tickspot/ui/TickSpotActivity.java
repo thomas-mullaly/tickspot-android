@@ -1,22 +1,20 @@
 package com.tronix.tickspot.ui;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.pm.ActivityInfoCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.tronix.tickspot.R;
 import com.tronix.tickspot.account.AccountManager;
 import com.tronix.tickspot.api.TickSpotCredentials;
@@ -26,7 +24,7 @@ import roboguice.inject.RoboInjector;
 
 import java.util.ArrayList;
 
-public class TickSpotActivity extends SherlockFragmentActivity {
+public class TickSpotActivity extends ActionBarActivity {
     private static final String SAVED_SELECTED_DRAWER_INDEX = "SelectedDrawerIndex";
 
     private TickSpotCredentials mCredentials;
@@ -88,7 +86,7 @@ public class TickSpotActivity extends SherlockFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.tickspot_actionbar_menu, menu);
         return true;
     }

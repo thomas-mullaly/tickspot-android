@@ -4,7 +4,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -46,7 +46,7 @@
     <style name="DrawerList">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_gravity">start</item>
-        <item name="android:background">@drawable/abs__ab_solid_dark_holo</item>
+        <item name="android:background">@drawable/abc_ab_solid_dark_holo</item>
         <item name="android:choiceMode">singleChoice</item>
         <item name="android:divider">@android:color/darker_gray</item>
         <item name="android:dividerHeight">1dp</item>

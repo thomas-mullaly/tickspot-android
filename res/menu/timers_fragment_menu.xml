@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tickspot="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_timers_add_timer"
           android:title="Add Timer"
-          android:showAsAction="always" />
+          android:showAsAction="always"
+          tickspot:showAsAction="always" />
 </menu>

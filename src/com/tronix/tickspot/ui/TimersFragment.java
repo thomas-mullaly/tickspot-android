@@ -2,23 +2,19 @@ package com.tronix.tickspot.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.view.*;
 import com.tronix.tickspot.R;
 
-public class TimersFragment extends SherlockFragment {
+public class TimersFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         setHasOptionsMenu(true);
 
-        if (activity instanceof SherlockFragmentActivity) {
-            ((SherlockFragmentActivity)activity).getSupportActionBar().setTitle("Timers");
+        if (activity instanceof ActionBarActivity) {
+            ((ActionBarActivity)activity).getSupportActionBar().setTitle("Timers");
         }
     }
 

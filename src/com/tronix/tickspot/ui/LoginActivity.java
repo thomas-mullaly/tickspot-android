@@ -6,12 +6,12 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.actionbarsherlock.app.SherlockActivity;
 import com.tronix.tickspot.R;
 import com.tronix.tickspot.account.AccountManager;
 import com.tronix.tickspot.api.TickSpotCredentials;
@@ -20,7 +20,7 @@ import com.tronix.tickspot.core.Action;
 import roboguice.RoboGuice;
 import roboguice.inject.RoboInjector;
 
-public class LoginActivity extends SherlockActivity {
+public class LoginActivity extends ActionBarActivity {
     private static final String EXTRA_PREFIX = "com.tronix.tickspot.extra.";
 
     public static final String EXTRA_FINISH_INTENT = EXTRA_PREFIX + "FinishIntent";

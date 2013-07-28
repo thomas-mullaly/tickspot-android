@@ -21,11 +21,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="actionbarsherlock" />
     <orderEntry type="library" name="guice-2.0-no_aop" level="project" />
     <orderEntry type="library" name="roboguice-2.0" level="project" />
     <orderEntry type="library" name="android-async-http-1.4.3" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="android-support-v4" level="project" />
+    <orderEntry type="library" name="android-support-v7-appcompat" level="project" />
+    <orderEntry type="module" module-name="appcompat" />
+    <orderEntry type="library" name="android-support-v4 (3)" level="project" />
   </component>
 </module>
 
