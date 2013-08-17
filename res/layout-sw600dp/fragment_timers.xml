@@ -8,13 +8,15 @@
     <fragment class="com.tronix.tickspot.ui.TimersListFragment"
               android:layout_width="0dp"
               android:layout_height="fill_parent"
-              android:layout_weight="1"/>
+              android:layout_weight="1"
+              android:id="@+id/timers_list_fragment"/>
 
     <View android:layout_width="1dp"
           android:layout_height="fill_parent"
           android:background="@android:color/black" />
 
-    <TextView android:layout_width="0dp"
+    <TextView android:id="@+id/timer_details"
+              android:layout_width="0dp"
               android:layout_height="fill_parent"
               android:layout_weight="3"
               android:text="Timers detail stub"/>

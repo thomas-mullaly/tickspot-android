@@ -4,10 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
-    <fragment class="com.tronix.tickspot.ui.TimersListFragment"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:id="@+id/timers_list_fragment" />
-
+    <TextView android:text="Heyo! It werks~!"
+              android:layout_height="wrap_content"
+              android:layout_width="fill_parent" />
 </LinearLayout>

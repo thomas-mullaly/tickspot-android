@@ -36,4 +36,8 @@ public class TimersListFragment extends ListFragment {
         setListAdapter(new TimersArrayAdapter(getActivity(), timers.toArray(new Timer[timers.size()])));
         return inflator.inflate(R.layout.fragment_timers_list, container, false);
     }
+
+    public void derp() {
+
+    }
 }

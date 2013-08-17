@@ -16,5 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity"/>
+        <activity android:name=".ui.TimerDetailActivity"
+                  android:label="@string/app_name"
+                  android:parentActivityName=".ui.TickSpotActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".ui.TickSpotActivity" />
+        </activity>
     </application>
 </manifest>
