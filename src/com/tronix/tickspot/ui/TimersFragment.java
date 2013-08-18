@@ -1,9 +1,9 @@
 package com.tronix.tickspot.ui;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import android.widget.TextView;
@@ -59,8 +59,10 @@ public class TimersFragment extends Fragment {
 
     private void addTimer() {
         if (!mIsDualPane) {
-            Intent detailIntent = new Intent(getActivity(), TimerDetailActivity.class);
-            getActivity().startActivity(detailIntent);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.tick_spot_content_frame, new TimersListFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 }
