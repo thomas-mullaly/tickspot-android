@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class TickSpotActivity extends ActionBarActivity {
     private static final String SAVED_SELECTED_DRAWER_INDEX = "SelectedDrawerIndex";
+    public static final String EXTRA_FRAGMENT_INDEX_TO_SHOW = "com.tronix.tickspot.extras.FRAGMENT_INDEX_TO_SHOW";
 
     private TickSpotCredentials mCredentials;
     private RoboInjector mRoboInjector;
