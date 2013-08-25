@@ -16,11 +16,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity"/>
-        <activity android:name=".ui.BaseDetailActivity"/>
         <activity android:name=".ui.TimerDetailsActivity"
                   android:parentActivityName=".ui.TickSpotActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".ui.TickSpotActivity" />
+        </activity>
+        <activity android:name=".ui.ProjectSearchActivity"
+                  android:label="@string/project_search_activity_title">
         </activity>
     </application>
 </manifest>

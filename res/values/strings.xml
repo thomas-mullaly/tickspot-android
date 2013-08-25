@@ -11,4 +11,5 @@
     <string name="login_credentials_help_text">Enter the credentials to your TickSpot account</string>
     <string name="login_credentials_email_address">Email Address</string>
     <string name="login_credentials_password">Password</string>
+    <string name="project_search_activity_title">Project Selection</string>
 </resources>

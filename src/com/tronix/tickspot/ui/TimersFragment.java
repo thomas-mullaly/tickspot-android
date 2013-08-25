@@ -61,7 +61,7 @@ public class TimersFragment extends Fragment {
 
     private void addTimer() {
         if (!mIsDualPane) {
-            Intent intent = new Intent(getActivity(), TimerDetailsActivity.class);
+            Intent intent = new Intent(getActivity(), ProjectSearchActivity.class);
             getActivity().startActivity(intent);
         }
     }
