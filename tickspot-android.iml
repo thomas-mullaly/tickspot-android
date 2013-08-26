@@ -22,6 +22,9 @@
     <orderEntry type="module" module-name="appcompat" />
     <orderEntry type="library" name="android-support-v4 (3)" level="project" />
     <orderEntry type="library" name="gson-2.2.4" level="project" />
+    <orderEntry type="library" name="xmappr-0.9.3" level="project" />
+    <orderEntry type="library" name="gson-xml-java-0.1.4" level="project" />
+    <orderEntry type="library" name="simple-xml-2.7" level="project" />
   </component>
 </module>
 
