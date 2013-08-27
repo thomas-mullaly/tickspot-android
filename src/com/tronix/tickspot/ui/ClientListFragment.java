@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.tronix.tickspot.R;
-import com.tronix.tickspot.api.TickSpotClient;
+import com.tronix.tickspot.api.models.TickSpotClient;
 import com.tronix.tickspot.api.TickSpotHttpClient;
 import com.tronix.tickspot.core.Action;
 import com.tronix.tickspot.settings.CredentialsStore;

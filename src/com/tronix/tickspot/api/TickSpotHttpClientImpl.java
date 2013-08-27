@@ -2,6 +2,7 @@ package com.tronix.tickspot.api;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.tronix.tickspot.api.models.TickSpotClient;
 import com.tronix.tickspot.api.parsers.TickSpotClientXmlParser;
 import com.tronix.tickspot.api.parsers.impl.TickSpotClientXmlParserImpl;
 import com.tronix.tickspot.core.Action;

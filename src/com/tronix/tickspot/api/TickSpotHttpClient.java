@@ -1,5 +1,6 @@
 package com.tronix.tickspot.api;
 
+import com.tronix.tickspot.api.models.TickSpotClient;
 import com.tronix.tickspot.core.Action;
 
 import java.util.ArrayList;
