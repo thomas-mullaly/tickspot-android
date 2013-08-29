@@ -45,7 +45,7 @@ public class TickSpotClientProjectAdapter extends ArrayAdapter<Object> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup container) {
-        View view = null;
+        View view;
 
         if (mFlattenedClientProjects.get(position) instanceof ProjectEntry) {
             ProjectEntry projectEntry = (ProjectEntry)mFlattenedClientProjects.get(position);
