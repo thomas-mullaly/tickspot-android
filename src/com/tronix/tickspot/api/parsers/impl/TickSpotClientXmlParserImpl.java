@@ -18,6 +18,7 @@ public class TickSpotClientXmlParserImpl implements TickSpotClientXmlParser {
         try {
             clientsProjectsTasks = serializer.read(TickSpotClientsProjectsTasks.class, clientsXml);
         } catch (Exception e) {
+            // LOL! Error handling...
             e.printStackTrace();
         }
         return clientsProjectsTasks.getClients();

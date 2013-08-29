@@ -48,7 +48,7 @@ public class TickSpotHttpClientImpl implements TickSpotHttpClient {
         });
     }
 
-    public void getClients(TickSpotCredentials tickSpotCredentials, final Action<ArrayList<TickSpotClient>> callback) {
+    public void getClients(TickSpotCredentials tickSpotCredentials, final Action<List<TickSpotClient>> callback) {
         String email = encodeString(tickSpotCredentials.getEmail());
         String password = encodeString(tickSpotCredentials.getPassword());
 
@@ -66,7 +66,7 @@ public class TickSpotHttpClientImpl implements TickSpotHttpClient {
 
                 }
 
-                callback.Invoke(new ArrayList<TickSpotClient>(clients));
+                callback.Invoke(clients);
             }
 
             @Override
