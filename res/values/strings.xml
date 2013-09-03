@@ -12,4 +12,7 @@
     <string name="login_credentials_email_address">Email Address</string>
     <string name="login_credentials_password">Password</string>
     <string name="project_search_activity_title">Project Selection</string>
+    <string name="search_action">Project Search</string>
+    <string name="search_view_query_hint">Search for project...></string>
+    <string name="client_project_list_empty_text">No projects to display. Try refining your search.</string>
 </resources>

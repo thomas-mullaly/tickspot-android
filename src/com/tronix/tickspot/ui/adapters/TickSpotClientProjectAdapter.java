@@ -5,29 +5,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 import com.tronix.tickspot.R;
-import com.tronix.tickspot.api.models.TickSpotClient;
-import com.tronix.tickspot.api.models.TickSpotProject;
+import com.tronix.tickspot.ui.models.ClientEntry;
+import com.tronix.tickspot.ui.models.ClientProjectEntryBase;
+import com.tronix.tickspot.ui.models.ProjectEntry;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URLDecoder;
+import java.util.*;
 
-public class TickSpotClientProjectAdapter extends ArrayAdapter<Object> {
-    private List<TickSpotClient> mClientProjects;
-    private List<Entry> mFlattenedClientProjects;
-
-    private ClientHeaderHolder mClientHeaderHolder;
-    private ProjectHolder mProjectHolder;
-
+public class TickSpotClientProjectAdapter extends ArrayAdapter<ClientProjectEntryBase> {
     private LayoutInflater mLayouInflater;
+    private List<ClientProjectEntryBase> mOriginalEntries;
+    private Filter mFilter;
 
-    public TickSpotClientProjectAdapter(Context context, List<TickSpotClient> clientProjects) {
-        super(context, R.layout.project_list_item);
-
-        mClientProjects = clientProjects;
+    public TickSpotClientProjectAdapter(Context context, List<ClientProjectEntryBase> clientProjects) {
+        super(context, R.layout.client_header_list_item, clientProjects);
+        mOriginalEntries = new ArrayList<ClientProjectEntryBase>(clientProjects);
         mLayouInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        buildItems();
     }
 
     @Override
@@ -37,7 +33,7 @@ public class TickSpotClientProjectAdapter extends ArrayAdapter<Object> {
 
     @Override
     public int getItemViewType(int position) {
-        if (mFlattenedClientProjects.get(position) instanceof ProjectEntry) {
+        if (getItem(position) instanceof ProjectEntry) {
             return 0;
         }
         return 1;
@@ -45,57 +41,105 @@ public class TickSpotClientProjectAdapter extends ArrayAdapter<Object> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup container) {
-        View view;
+        ClientProjectEntryBase item = getItem(position);
 
-        if (mFlattenedClientProjects.get(position) instanceof ProjectEntry) {
-            ProjectEntry projectEntry = (ProjectEntry)mFlattenedClientProjects.get(position);
-            view = mLayouInflater.inflate(R.layout.project_list_item, container, false);
-            TextView textView = (TextView) view.findViewById(android.R.id.text1);
-            textView.setText(projectEntry.mProject.getName());
-        } else {
-            ClientHeaderEntry clientHeaderEntry = (ClientHeaderEntry)mFlattenedClientProjects.get(position);
-            view = mLayouInflater.inflate(R.layout.client_header_list_item, container, false);
-            TextView textView = (TextView) view.findViewById(android.R.id.text1);
-            textView.setText(clientHeaderEntry.mClient.getName());
-        }
+        final boolean isProjectEntry = item instanceof ProjectEntry;
 
-        return view;
-    }
+        if (isProjectEntry) {
+            ProjectEntryViewHolder viewHolder;
 
-    private void buildItems() {
-        mFlattenedClientProjects = new ArrayList<Entry>();
-        for (TickSpotClient client : mClientProjects) {
-            ClientHeaderEntry header = new ClientHeaderEntry();
-            header.mClient = client;
-            mFlattenedClientProjects.add(header);
+            if (convertView == null) {
+                convertView = mLayouInflater.inflate(R.layout.project_list_item, container, false);
+                viewHolder = new ProjectEntryViewHolder();
+                viewHolder.textView = (TextView) convertView.findViewById(android.R.id.text1);
 
-            add(header);
-
-            for (TickSpotProject project : client.getProjects()) {
-                ProjectEntry projectEntry = new ProjectEntry();
-                projectEntry.mProject = project;
-                mFlattenedClientProjects.add(projectEntry);
-
-                add(projectEntry);
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ProjectEntryViewHolder) convertView.getTag();
             }
+
+            viewHolder.textView.setText(item.name);
+        } else {
+            ClientEntryViewHolder viewHolder;
+            if (convertView == null) {
+                convertView = mLayouInflater.inflate(R.layout.client_header_list_item, container, false);
+                viewHolder = new ClientEntryViewHolder();
+                viewHolder.textView = (TextView) convertView.findViewById(android.R.id.text1);
+
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ClientEntryViewHolder) convertView.getTag();
+            }
+
+            viewHolder.textView.setText(item.name);
+        }
+
+        return convertView;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return getItem(position) instanceof ProjectEntry;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (mFilter == null) {
+            mFilter = new ClientProjectFilter(mOriginalEntries);
+        }
+        return mFilter;
+    }
+
+    private class ClientProjectFilter extends Filter {
+        private final List<ClientProjectEntryBase> mEntries;
+
+        public ClientProjectFilter(List<ClientProjectEntryBase> entries) {
+            mEntries = entries;
+        }
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            FilterResults results = new FilterResults();
+            List<ClientProjectEntryBase> filteredResults = new ArrayList<ClientProjectEntryBase>();
+            Set<ClientEntry> addedClients = new HashSet<ClientEntry>();
+
+            for (ClientProjectEntryBase entry : mEntries) {
+                if (entry instanceof ProjectEntry) {
+                    ProjectEntry proj = (ProjectEntry) entry;
+                    if (entry.name.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (!addedClients.contains(proj.client)) {
+                            addedClients.add(proj.client);
+                            filteredResults.add(proj.client);
+                        }
+                        filteredResults.add(proj);
+                    }
+                }
+            }
+
+            results.values = filteredResults;
+            results.count = filteredResults.size();
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            List<ClientProjectEntryBase> results = (List<ClientProjectEntryBase>) filterResults.values;
+            clear();
+
+            for (ClientProjectEntryBase entry : results) {
+                add(entry);
+            }
+
+            notifyDataSetChanged();
         }
     }
 
-    private static class ClientHeaderHolder {
+    private static class ClientEntryViewHolder {
         public TextView textView;
     }
 
-    private static class ProjectHolder {
+    private static class ProjectEntryViewHolder {
         public TextView textView;
-    }
-
-    private static class Entry { }
-
-    private static class ClientHeaderEntry extends Entry {
-        public TickSpotClient mClient;
-    }
-
-    private static class ProjectEntry extends Entry {
-        public TickSpotProject mProject;
     }
 }
