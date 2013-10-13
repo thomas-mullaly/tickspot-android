@@ -34,7 +34,7 @@ public class TickSpotHttpClientImpl implements TickSpotHttpClient {
         String email = encodeString(tickSpotCredentials.getEmail());
         String password = encodeString(tickSpotCredentials.getPassword());
 
-        final String url = String.format(TICK_SPOT_URL_FORMAT, tickSpotCredentials.getDomain(), "recent_task", email, password);
+        final String url = String.format(TICK_SPOT_URL_FORMAT, tickSpotCredentials.getDomain(), "users", email, password);
         mAsyncHttpClient.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(String response) {
