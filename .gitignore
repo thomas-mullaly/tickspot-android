@@ -21,9 +21,11 @@ local.properties
 .project
 .settings/
 
-# Intellij
-.idea/workspace.xml
+# Android Studio
 *.iws
+.idea/
+*.iml
+gradle/
 
 # Mac
 .DS_Store

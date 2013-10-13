@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="DrawerListItem" parent="DrawerListItemBase">
-        <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
-    </style>
-</resources>
